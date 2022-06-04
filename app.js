@@ -21,6 +21,6 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "views/index.html"))
 })
 
-app.listen(80, () => {
-  console.log("Listening on port " + 80)
+app.listen(8080, () => {
+  console.log("Listening on port " + 8080)
 })
