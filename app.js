@@ -24,4 +24,6 @@ app.get("/", (req, res) => {
 
 app.listen(process.env.PORT || 5000, () => {
   console.log("Listening on port " + process.env.PORT || 5000)
+  console.log("        Don`t trhead on me.         ")
+  console.log("located on: http://localhost:" + process.env.PORT || 5000)
 })

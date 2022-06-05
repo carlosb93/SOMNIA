@@ -11480,7 +11480,7 @@ footer.footer .social-link:hover {
   height: auto;
   padding-top: 8rem;
   padding-bottom: 8rem;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url("../assets/img/bg-masthead.jpg");
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url("../assets/img/bg-masthead-2.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -11500,6 +11500,14 @@ footer.footer .social-link:hover {
   margin: 0;
   padding: 0;
 }
+
+.band {
+  background-color:rgba(255, 255, 255,0.7);
+  padding-left: 10px;
+  padding-right: 10px;
+  line-height:1.5;
+  border-radius: 0.3rem;}
+
 .masthead h3, .masthead .h3 {
   font-family:"Gistesy";
   font-size: 3rem;
