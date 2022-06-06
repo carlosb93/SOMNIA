@@ -21,6 +21,9 @@ app.use(
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "views/index.html"))
 })
+app.get("/foto", (req, res) => {
+  res.sendFile(path.join(__dirname, "views/curso_foto.html"))
+})
 
 app.listen(process.env.PORT || 5000, () => {
   console.log("Listening on port " + process.env.PORT || 5000)

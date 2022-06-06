@@ -11430,6 +11430,19 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.calloutpost {
+  padding: 15rem 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url("../assets/img/bg-callout-sober.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.calloutpost h2, .calloutpost .h2 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  display: block;
+  max-width: 30rem;
+}
 .callout h2, .callout .h2 {
   font-size: 3.5rem;
   font-weight: 700;
@@ -11506,7 +11519,8 @@ footer.footer .social-link:hover {
   padding-left: 10px;
   padding-right: 10px;
   line-height:1.5;
-  border-radius: 0.3rem;}
+  border-radius: 0.3rem;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1);}
 
 .masthead h3, .masthead .h3 {
   font-family:"Gistesy";
@@ -11532,7 +11546,7 @@ footer.footer .social-link:hover {
   display: flex;
   height: 100%;
   width: 100%;
-  background-color: rgba(33, 37, 41, 0.2);
+  background-color: rgba(33, 37, 41, 0);
   position: absolute;
   top: 0;
   bottom: 0;
@@ -11545,6 +11559,10 @@ footer.footer .social-link:hover {
 .portfolio-item .caption .caption-content h2, .portfolio-item .caption .caption-content .h2 {
   font-size: 0.8rem;
   text-transform: uppercase;
+}
+.portfolio-item .caption .caption-content h1, .portfolio-item .caption .caption-content .h1 {
+  text-transform: uppercase;
+  font-family:"Mont-Bold";
 }
 .portfolio-item .caption .caption-content p {
   font-weight: 300;
@@ -11580,7 +11598,7 @@ footer.footer .social-link:hover {
             clip-path: inset(2rem);
   }
   .portfolio-item:hover .caption {
-    background-color: rgba(125, 138, 129, 0.9);
+    background-color: rgba(125, 138, 129, 0.6);
     -webkit-clip-path: inset(2rem);
             clip-path: inset(2rem);
   }
