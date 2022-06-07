@@ -44,80 +44,43 @@
                 <div class="col-lg-10">
 
                     <div class="col-lg-12">
-                        <a class="portfolio-item" href="#!">
-                            <div class="caption">
-                                <div class="caption-content">
-                                    <h1>Curso de Fotografía y edición Móvil</h1>
-
-                                </div>
-                            </div>
-                            <img class="img-fluid" src="./assets/img/portada-curso-1.jpg" alt="..." />
-                        </a>
-                    </div>
-                    <br><br>
-                    <p class="lead mb-5">
-                        Quieres crear un contenido de calidad sin necesidad de invertir muchos recursos? Sácale partido
-                        a tu creatividad e impacta con tus fotografías para que tu comunidad vea la cálidad de tus
-                        productos y servicios a través de tus ojos.
-
-                    </p>
-                    
-                    <a class="btn btn-dark btn-xl" href="#comprar">Comprar</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Services-->
-    <section class="content-section bg-primary text-white text-center" id="comprar">
-        <div class="container px-4 px-lg-5">
-            <div class="content-section-heading">
-                <h2 class="mb-5">Pasos para obtener el curso</h2>
-            </div>
-            <div class="row gx-4 gx-lg-5">
-                <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
-                    <span class="service-icon rounded-circle mx-auto mb-3"><i class="icon-screen-smartphone"></i></span>
-                    
-                 
-                        
-                    
-                            <p>Deberás realizar una transacción por el monto de <strong>5</strong><b>00 CUP</b></p>
-                            <p>La transacción se realizará a la siguiente cuenta bancaria:</p>
-                            <p><strong>9224 9598 7234 2082</strong></p>
-                            <p>Para realizar el pago en la aplicación Transfermóvil siga las instrucciones:</p>
-                            
-                           
                       
                     
-                </div>
-                <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
-                    <span class="service-icon rounded-circle mx-auto mb-3"><i class="icon-arrow-right"></i></span>
-                  
-                    <p>1.&nbsp; Ve a la sección <b>Transferir efectivo</b> en la aplicación.</p>
-                    <p>2. <b> a. Introducir</b> el número de cuenta <strong>9224 9598 7234 2082</strong>&nbsp;en el campo Tarjeta o Cuenta del destinatario y en el campo Móvil
-                        a confirmar introducir <strong><u>58467340.</u></strong></p>
-                        </p>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
-                    <span class="service-icon rounded-circle mx-auto mb-3"><i class="icon-arrow-right"></i></span>
-                 
-                    <p>3. Introduce en la misma ventana el monto a transferir: <strong>500</strong><b>
-                        CUP</b><b><b>&nbsp;</b></b>y seleccione el <strong>tipo de cuenta a operar.
-                    </strong>Seleccione<strong> Aceptar</strong><b><b>.<br></b></b></p>
-                <p>4.&nbsp; Espera los <b>SMS de notificación</b> de Transfermóvil.</p>
-                <p><h4><span style="color: #fa7268;"><i>Pero todavía no has terminado, para poder enviarte el
-                    curso</i></h4></span><h4><i style="color: #fa7268;">&nbsp; necesitamos que ejecutes el
-                paso siguiente:</i></h4></p>
-              
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <span class="service-icon rounded-circle mx-auto mb-3"><i class="icon-cloud-download"></i></span>
-                    
-            <p>5.<strong> Introduce en el formulario</strong> de abajo la Plataforma de pago, el Nro de
-                transacción, su Nombre y Apellidos y la dirección de correo electrónico.</p>
-            <p>6. <b>Revisa tu bandeja de correo,</b> recibirás una comunicación nuestra confirmando que
-                recibimos el formulario con tus datos de transacción.</p>
-            <p>7. Una vez hayamos confirmado la transferencia, en un plazo de 24 horas, <b>te enviaremos
-                    un correo con la información</b> para que accedas a la guía.&nbsp;</p>
+                               
+                                    <h1>Compras por cliente</h1>
+
+                              
+                         
+            
+                      
+                    </div>
+                    <br><br>
+                    <div class="table-responsive">
+                        <table id="table" class="table table-striped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>EMAIL</th>
+                                    <th>PRODUCTO</th>
+                                    <th>NO_TRANSACCION</th>
+                                    <th>RUTA</th>
+                                    <th>ACTIVO</th>
+                                    <th>FECHA</th> 
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>EMAIL</th>
+                                    <th>PRODUCTO</th>
+                                    <th>NO_TRANSACCION</th>
+                                    <th>RUTA</th>
+                                    <th>ACTIVO</th>
+                                    <th>FECHA</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -197,6 +160,55 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="./js/scripts.js"></script>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/data-tables/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="./js/data-tables/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+    <script src="./js/data-tables/js/config-dataTables.js" type="text/javascript"></script>
 </body>
+<script type="text/javascript">
+    $(document).ready(function () {
 
+        $('#table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: { url:'/consultas-productos'},
+                columns:[
+                            {data: 'id','searchable':true},
+                            {data: 'email','searchable':false},
+                            {data: 'product','searchable':false},
+                            {data: 'transfer_code','searchable':true},
+                            {data: 'route','searchable':true},
+                            {data: 'activo','searchable':false},
+                            {data: 'fecha','searchable':false},
+                           
+                        ],
+                order: [[ 0, 'desc' ]],
+                language: {
+                            'decimal': '.',
+                            'emptyTable': 'Ningún registro disponible en esta tabla',
+                            'info': 'Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros',
+                            'infoEmpty': 'Mostrando registros del 0 al 0 de un total de 0 registros',
+                            'infoFiltered': '(filtered from _MAX_ total entries)',
+                            'infoPostFix': '',
+                            'thousands': '.',
+                            'lengthMenu': 'Mostrar _MENU_ registros',
+                            'loadingRecords': 'Cargando...',
+                            'processing': 'Procesando...',
+                            'search': 'Buscar:',
+                            'zeroRecords': 'No se encontraron resultados',
+                            'paginate': {
+                                'first': 'Primero',
+                                'last': 'Último',
+                                'next': 'Siguiente',
+                                'previous': 'Anterior',
+                            },
+                            'aria': {
+                                'sortAscending': 'Activar para ordenar la columna de manera ascendente',
+                                'sortDescendin': 'Activar para ordenar la columna de manera descendente'
+                            }
+                }
+            })
+        });
+
+    </script>
 </html>
