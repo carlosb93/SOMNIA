@@ -162,7 +162,7 @@ function emailtemplate(name, surname, product=null) {
     let link  = '';
     if(product != null){
         if(product = 'Curso de Fotografía y edición Móvil'){
-            link ='1';
+            link ='https://drive.google.com/drive/folders/1N2WWEh0PSA6u-cSnwhAG9mBMrqiGwc74?usp=sharing';
         }else{
             link = '2';
         }
