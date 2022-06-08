@@ -1,5 +1,7 @@
 const db = require('./db');
 const config = require('./config');
+require('dotenv').config();
+const Nylas = require('nylas');
 
 function getMultiple(page = 1) {
     const offset = (page - 1) * config.listPerPage;
@@ -73,65 +75,82 @@ function buy(req, res) {
 
         const profile_id = user[0].id;
 
-        const activo = true;
+        const activo = 1;
 
         const fecha = Date.now();
 
         const product_res = db.run('INSERT INTO product (profile_id, product, route, transfer_code, activo ) VALUES (@profil' +
-                'e_id, @product, @route, @transfer_code, @activo,@fecha)', {profile_id, product, route, transfer_code,activo,fecha});
+                'e_id, @product, @route, @transfer_code, @activo)', {profile_id, product, route, transfer_code,activo});
     }
     let message = 'Error in creating profile';
     if (result.changes) {
         message = 'profile created successfully';
     }
 
+    Nylas.config({
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+    });
+    const nylas = Nylas.with(process.env.ACCESS_TOKEN);
 
-    const send = require('gmail-send')({
-        //const send = require('../index.js')({
-          user: 'playeralfa22@gmail.com',
-          // user: credentials.user,               // Your GMail account used to send emails
-          pass: '93050807702',
-          // pass: credentials.pass,               // Application-specific password
-          to:   email,
-          // to:   credentials.user,               // Send to yourself
-          //                                       // you also may set array of recipients:
-          //                                       // [ 'user1@gmail.com', 'user2@gmail.com' ]
-          // from:    credentials.user,            // from: by default equals to user
-          // replyTo: credentials.user,            // replyTo: by default `undefined`
+    const draft = nylas.drafts.build({
+      subject: '!Aqui tienes tu videocurso!  '+ product,
+      to: [{ email: email }],
+      body: emailtemplate(name, surname, product),
+    });
+    
+    // Sending the draft
+    
+    draft.send().then(message => {
+      console.log(`${message.id} was sent`);
+    });
+
+    // const send = require('gmail-send')({
+    //     //const send = require('../index.js')({
+    //       user: 'playeralfa22@gmail.com',
+    //       // user: credentials.user,               // Your GMail account used to send emails
+    //       pass: '93050807702',
+    //       // pass: credentials.pass,               // Application-specific password
+    //       to:   email,
+    //       // to:   credentials.user,               // Send to yourself
+    //       //                                       // you also may set array of recipients:
+    //       //                                       // [ 'user1@gmail.com', 'user2@gmail.com' ]
+    //       // from:    credentials.user,            // from: by default equals to user
+    //       // replyTo: credentials.user,            // replyTo: by default `undefined`
           
-          // bcc: 'some-user@mail.com',            // almost any option of `nodemailer` will be passed to it
-          //                                       // (but no any processing will be done on them)
+    //       // bcc: 'some-user@mail.com',            // almost any option of `nodemailer` will be passed to it
+    //       //                                       // (but no any processing will be done on them)
           
-          subject: '!Aqui tienes tu videocurso!  '+ product,
+    //       subject: '!Aqui tienes tu videocurso!  '+ product,
           
-          html:    emailtemplate(name, surname, product)           // HTML
-          // files: [ filepath ],                  // Set filenames to attach (if you need to set attachment filename in email, see example below
-        });
+    //       html:    emailtemplate(name, surname, product)           // HTML
+    //       // files: [ filepath ],                  // Set filenames to attach (if you need to set attachment filename in email, see example below
+    //     });
         
         
 
         
         
         
-        console.log('sending test email');
+    //     console.log('sending test email');
         
-        // Override any default option and send email
+    //     // Override any default option and send email
         
-        send({ // Overriding default parameters
-          subject: '!Aqui tienes tu videocurso!',         // Override value set as default
-        }, function (err, res, full) {
-          if (err) return console.log('* [example 1.1] send() callback returned: err:', err);
-          console.log('* [example 1.1] send() callback returned: res:', res);
-          // uncomment to see full response from Nodemailer:
-          // console.log('* [example 1.2] send() callback returned: full:', full);
-        });
+    //     send({ // Overriding default parameters
+    //       subject: '!Aqui tienes tu videocurso! '+ product,         // Override value set as default
+    //     }, function (err, res, full) {
+    //       if (err) return console.log('* [example 1.1] send() callback returned: err:', err);
+    //       console.log('* [example 1.1] send() callback returned: res:', res);
+    //       // uncomment to see full response from Nodemailer:
+    //       // console.log('* [example 1.2] send() callback returned: full:', full);
+    //     });
 
    
     return {message};
 }
 function emailtemplate(name, surname, product) {
 
-    const plantilla = `<!doctype html>
+    let plantilla = `<!doctype html>
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
         xmlns:o="urn:schemas-microsoft-com:office:office">
     
@@ -408,6 +427,7 @@ function emailtemplate(name, surname, product) {
         </div>
     </body>
     </html>`;
+
    return plantilla;
 }
 
