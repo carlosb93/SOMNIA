@@ -88,8 +88,8 @@ function buy(req, res) {
     }
 
     Nylas.config({
-        clientId: CLIENT_ID,
-        clientSecret: CLIENT_SECRET,
+        clientId:process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
     });
     const nylas = Nylas.with(process.env.ACCESS_TOKEN);
 
