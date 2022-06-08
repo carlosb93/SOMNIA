@@ -65,16 +65,18 @@ function aprovePurchase(req, res) {
     const user = db.query(`SELECT * FROM profile WHERE email = ?`, [email]);
    
 
+
     Nylas.config({
         clientId:process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
     });
     const nylas = Nylas.with(process.env.ACCESS_TOKEN);
-
+  
+    
     const draft = nylas.drafts.build({
         subject: '!Aqui tienes tu videocurso!  '+ product,
         to: [{ email: email }],
-        body: emailtemplate(user.name, user.surname, product),
+        body: emailtemplate(user[0].name, user[0].surname, product),
       });
     
     // Sending the draft
@@ -84,8 +86,8 @@ function aprovePurchase(req, res) {
     });
 
     let message = 'success';
-    const updated =  db.query(`UPDATE product SET activo=0 WHERE profile_id = ? AND product = ? AND transfer_code = ?`, [user.id, product, transfer_code]);
-    return {message};
+    const updated =  db.run(`UPDATE product SET activo=0 WHERE profile_id = ? AND product = ? AND transfer_code = ?`, [user[0].id, product, transfer_code]);
+    return message;
 }
 
 

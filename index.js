@@ -36,7 +36,8 @@ app.get("/clientes", (req, res) => {
 })
 app.post("/aprove", (req, res) => {
   try {
-    const data = main.aprovePurchase(req);
+    const data = main.aprovePurchase(req.body, res);
+    
     res.sendFile(path.join(__dirname, "views/clientes.html"))
 }
 catch (err) {
