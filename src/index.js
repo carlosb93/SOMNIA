@@ -85,7 +85,7 @@ function aprovePurchase(req, res) {
       console.log(`${message.id} was sent`);
     });
 
-    
+    let message = 'success';
     db.query(`UPDATE product SET activo=0 WHERE profile_id = ? AND product = ? AND transfer_code = ?`, [user.id, product, transfer_code]);
     return {message};
 }
