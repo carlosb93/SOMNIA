@@ -63,8 +63,6 @@ function aprovePurchase(req, res) {
         transfer_code,} = req;
 
     const user = db.query(`SELECT * FROM profile WHERE email = ?`, [email]);
-    const result = {};
-    const products = db.query(`SELECT * FROM product WHERE profile_id = ? AND product = ? AND transfer_code = ?`, [user.id, product, transfer_code]);
    
 
     Nylas.config({
@@ -86,7 +84,7 @@ function aprovePurchase(req, res) {
     });
 
     let message = 'success';
-    db.query(`UPDATE product SET activo=0 WHERE profile_id = ? AND product = ? AND transfer_code = ?`, [user.id, product, transfer_code]);
+    const updated =  db.query(`UPDATE product SET activo=0 WHERE profile_id = ? AND product = ? AND transfer_code = ?`, [user.id, product, transfer_code]);
     return {message};
 }
 
