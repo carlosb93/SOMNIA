@@ -85,18 +85,7 @@ function aprovePurchase(req, res) {
       console.log(`${message.id} was sent`);
     });
 
-    const draft_admin = nylas.drafts.build({
-      subject: '!Peticion de compra!  '+ product,
-      to: [{ email: 'playeralfa22@gmail.com' }],
-      body: emailtemplateadmin(user.name, user.surname, email, product, transfer_code),
-    });
     
-    // Sending the draft
-    
-    draft_admin.send().then(message => {
-      console.log(`${message.id} was sent`);
-    });
-
     db.query(`UPDATE product SET activo=0 WHERE profile_id = ? AND product = ? AND transfer_code = ?`, [user.id, product, transfer_code]);
     return {message};
 }
@@ -145,7 +134,7 @@ function buy(req, res) {
     const draft = nylas.drafts.build({
         subject: '!Procesando su compra!  '+ product,
         to: [{ email: email }],
-        body: emailtemplate(user.name, user.surname),
+        body: emailtemplate(name, surname),
       });
     
     // Sending the draft
@@ -153,7 +142,18 @@ function buy(req, res) {
     draft.send().then(message => {
       console.log(`${message.id} was sent`);
     });
-
+    const draft_admin = nylas.drafts.build({
+        subject: '!Peticion de compra!  '+ product,
+        to: [{ email: 'playeralfa22@gmail.com' }],
+        body: emailtemplateadmin(name, surname, email, product, transfer_code),
+      });
+      
+      // Sending the draft
+      
+      draft_admin.send().then(message => {
+        console.log(`${message.id} was sent`);
+      });
+  
    
     return {message};
 }
