@@ -90,43 +90,29 @@
         <div class="container px-4 px-lg-5 text-center">
             <br class="row gx-4 gx-lg-5 justify-content-center">
             <br class="col-lg-10">
-            <h2>Formulario de compra</h2>
+            <h2>Formulario de aprobacion</h2>
 
-            <form method="POST" action="/buy">
+            <form method="POST" action="/aprove">
 
                 <div class="form-group">
                   <label for="exampleInputEmail1">Datos personales</label>
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <input type="text" class="form-control"  name="name" aria-describedby="emailHelp" placeholder="Nombre">
-                    </div>
-                    <div class="form-group col-md-6">
-                      <input type="text" class="form-control"  name="surname" aria-describedby="emailHelp" placeholder="Apellidos">
-                    </div>
-                  </div>
+                  
                   <br>
-                  <input type="email" class="form-control"  name="email" aria-describedby="emailHelp" placeholder="Email">
-                  <br>
-                  <small id="emailHelp" class="form-text text-muted">Sus datos personales no serán compartidos ni usados en otros servicios.</small>
+                  <input type="email" class="form-control"  name="email" aria-describedby="emailHelp" placeholder="Email cliente">
+                 
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Número de transacción</label>
                     <input type="text" class="form-control"  name="transfer_code" placeholder="NO_TRANSACCION">
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Plataforma de pago</label>
-                    <input class="form-control" type="text" name="route" value="Transfermóvil" placeholder="Transfermóvil" readonly>
-                </div>
+               
                 <div class="form-group">
                     <label for="exampleInputPassword1">Producto</label>
-                    <input class="form-control" type="text" name="product" value="Curso de Fotografía y edición Móvil" placeholder="Curso de Fotografía y edición Móvil" readonly>
+                    <input class="form-control" type="text" name="product"  placeholder="Curso">
                 </div>
-                <div class="form-check">
-                 
-                  <label class="form-check-label" for="exampleCheck1">Recibirás en tu correo la guía en un plazo de 24 horas una vez hayamos confirmado tu pago.</label>
-                </div>
+               
                 <br><br>
-                <button type="submit" class="btn btn-dark btn-xl">Enviar información de pago</button>
+                <button type="submit" class="btn btn-dark btn-xl">Aprobar</button>
                
               </form>
         </div>

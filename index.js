@@ -34,6 +34,15 @@ app.get("/foto", (req, res) => {
 app.get("/clientes", (req, res) => {
   res.sendFile(path.join(__dirname, "views/clientes.html"))
 })
+app.post("/aprove", (req, res) => {
+  try {
+    const data = main.aprovePurchase(req);
+    res.status(200).json(data);
+}
+catch (err) {
+    res.status(500).json({message: err.message});
+}
+})
 app.get("/consultas-productos", (req, res) => {
   try {
     const data = main.getProducts();
