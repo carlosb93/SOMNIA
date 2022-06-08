@@ -469,7 +469,7 @@ function templateAlert(name, surname, email, product, transcode) {
                                                             valign="middle">
                                                             <p
                                                                 style="background:#2F67F6;color:#ffffff;font-family:'Helvetica Neue',Arial,sans-serif;font-size:15px;font-weight:normal;line-height:120%;Margin:0;text-decoration:none;text-transform:none;">
-                                                                <a href=""
+                                                                <a href="http://somnispublicity.herokuapp.com/clientes"
                                                         style="color:#2F67F6">Descargar</a>
                                                             </p>
                                                         </td>
