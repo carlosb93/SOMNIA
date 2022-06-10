@@ -103,7 +103,7 @@ function buy(req, res) {
         transfer_code
     } = req;
     const user_test = db.query(`SELECT * FROM profile WHERE email = ?`, [email]);
-    const result = {};
+    let result = {};
     if (!user_test[0]) {
         result = db.run('INSERT INTO profile (name, surname, email ) VALUES (@name, @surname, @email)', {name, surname, email});
     }
